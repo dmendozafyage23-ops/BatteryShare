@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Status bar -->
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a paired device"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Own battery (top right corner) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/ownBatteryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You: --%"
+            android:textSize="14sp"
+            android:textColor="#666666" />
+    </LinearLayout>
+
+    <!-- Remote battery big number -->
+    <TextView
+        android:id="@+id/remoteBatteryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remote Battery"
+        android:textSize="14sp"
+        android:textColor="#999999"
+        android:layout_marginBottom="4dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/remoteBatteryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="--"
+        android:textSize="120sp"
+        android:textColor="#222222"
+        android:gravity="center"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/remoteBatteryPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="%"
+        android:textSize="32sp"
+        android:textColor="#888888"
+        android:layout_marginTop="-16dp"
+        android:visibility="invisible" />
+
+    <!-- Paired device list -->
+    <ListView
+        android:id="@+id/deviceList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="1dp" />
+
+    <!-- Disconnect / reconnect button -->
+    <Button
+        android:id="@+id/reconnectButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tap to reconnect"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,23 @@
+# Built files
+build/
+app/build/
+.gradle/
+*.apk
+*.ap_
+*.aab
+output-metadata.json
+
+# Local configuration
+local.properties
+
+# IDE
+.idea/
+*.iml
+captures/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Gradle wrapper (keep if you want, but typically committed - optional)
+# gradle/wrapper/gradle-wrapper.jar

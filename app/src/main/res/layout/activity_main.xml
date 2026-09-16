@@ -1,65 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F8FAFC"
     android:padding="16dp">
 
-    <!-- Status bar -->
-    <TextView
-        android:id="@+id/statusText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select a paired device"
-        android:textSize="14sp"
-        android:textColor="#888888"
-        android:layout_marginBottom="4dp" />
-
-    <!-- Own battery (top right corner) -->
+    <!-- App Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginBottom="8dp">
-        <TextView
-            android:id="@+id/ownBatteryText"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BatteryShare"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#0F172A" />
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a paired device"
+                android:textSize="13sp"
+                android:textColor="#64748B" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRefresh"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You: --%"
-            android:textSize="14sp"
-            android:textColor="#666666" />
+            android:text="Refresh"
+            android:textColor="#2563EB"
+            android:minHeight="0dp"
+            android:paddingHorizontal="8dp" />
     </LinearLayout>
 
-    <!-- Remote battery big number -->
+    <!-- Local Device Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#E2E8F0"
+        app:cardBackgroundColor="#FFFFFF"
+        android:layout_marginBottom="14dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="THIS DEVICE"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#94A3B8"
+                    android:letterSpacing="0.08" />
+
+                <TextView
+                    android:id="@+id/localDeviceNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Phone"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E293B"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ownBatteryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--%"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#059669" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Remote Device Card (Hero Card shown when connected / connecting) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/remoteCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#DBEAFE"
+        app:cardBackgroundColor="#EFF6FF"
+        android:layout_marginBottom="14dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/remoteBatteryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PEER BATTERY"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08"
+                android:textColor="#1D4ED8" />
+
+            <TextView
+                android:id="@+id/remoteDeviceNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remote Device"
+                android:textSize="15sp"
+                android:textColor="#475569"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/remoteBatteryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textSize="84sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E293B"
+                    android:includeFontPadding="false" />
+
+                <TextView
+                    android:id="@+id/remoteBatteryPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="#3B82F6"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/remoteStatusSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Connected"
+                android:textSize="13sp"
+                android:textColor="#16A34A"
+                android:layout_marginBottom="12dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDisconnect"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disconnect"
+                android:textColor="#DC2626"
+                app:strokeColor="#FCA5A5"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Disconnected / Reconnect prompt banner -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/reconnectCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#FEE2E2"
+        app:cardBackgroundColor="#FEF2F2"
+        android:layout_marginBottom="14dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/reconnectNoticeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Connection lost"
+                android:textSize="13sp"
+                android:textColor="#991B1B" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReconnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reconnect"
+                android:textSize="12sp"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#DC2626"
+                android:minHeight="0dp"
+                android:paddingVertical="8dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Section Title: Paired Devices -->
     <TextView
-        android:id="@+id/remoteBatteryLabel"
+        android:id="@+id/pairedDevicesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remote Battery"
+        android:text="PAIRED DEVICES"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="#94A3B8"
+        android:letterSpacing="0.08"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Empty state prompt -->
+    <TextView
+        android:id="@+id/emptyDevicesText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No paired Bluetooth devices found.\nPair with your other phone in Android Bluetooth Settings first."
+        android:textColor="#64748B"
         android:textSize="14sp"
-        android:textColor="#999999"
-        android:layout_marginBottom="4dp"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/remoteBatteryText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="--"
-        android:textSize="120sp"
-        android:textColor="#222222"
         android:gravity="center"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/remoteBatteryPercent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="%"
-        android:textSize="32sp"
-        android:textColor="#888888"
-        android:layout_marginTop="-16dp"
-        android:visibility="invisible" />
+        android:padding="24dp"
+        android:visibility="gone" />
 
     <!-- Paired device list -->
     <ListView
@@ -67,14 +265,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:dividerHeight="1dp" />
+        android:divider="#E2E8F0"
+        android:dividerHeight="1dp"
+        android:background="#FFFFFF" />
 
-    <!-- Disconnect / reconnect button -->
-    <Button
-        android:id="@+id/reconnectButton"
+    <!-- Bluetooth Settings shortcut button if needed -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOpenBtSettings"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tap to reconnect"
-        android:visibility="gone" />
+        android:text="Open Bluetooth Settings"
+        android:textColor="#475569"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

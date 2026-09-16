@@ -1,3 +1,12 @@
-<resources>
-    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar" />
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#2563EB</item>
+        <item name="colorPrimaryVariant">#1D4ED8</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#10B981</item>
+        <item name="colorSecondaryVariant">#059669</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:statusBarColor">#0F172A</item>
+        <item name="android:windowBackground">#F8FAFC</item>
+    </style>
 </resources>
